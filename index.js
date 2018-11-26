@@ -2,6 +2,9 @@
 const express = require('express')
 const redis = require('redis')
 
+//Accessing process which will run this app
+const process = require('process')
+
 //Initizing dependencies 
 const app = express()
 const redisClient = redis.createClient({
@@ -13,6 +16,7 @@ const redisClient = redis.createClient({
 redisClient.set('visits', 0)
 
 app.get('/', (req, res) => {
+    process.exit(0);
     redisClient.get('visits', (err, visits) => {
         if (err) res.json(err)
         res.send('Number of visits is ' + visits)
