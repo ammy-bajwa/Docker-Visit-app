@@ -1,9 +1,18 @@
-version: '3'
-services: 
+#Specify the docker compose version you want to use
+version: "3"
+
+#service means containers
+services:
+  #redis server container name and it`s base image
   redis-server:
-    image: 'redis'
+    image: "redis"
+
+  #node app container name and it`s base image with restart policy and port
   node-app:
+    #if you want to use no then it should be like "no" no like no because no means false in yaml file
     restart: always
+
+    #Instead of using image you can use docker file in setting path to dockerfile of build property
     build: .
-    ports: 
+    ports:
       - "4001:8081"
